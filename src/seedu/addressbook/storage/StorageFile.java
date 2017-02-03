@@ -116,10 +116,10 @@ public class StorageFile {
 
     /**
      * Loads data from this storage file.
-     *
+     * @throws FileNotFoundException if the file got deleted.
      * @throws StorageOperationException if there were errors reading and/or converting data from file.
      */
-    public AddressBook load() throws StorageOperationException {
+    public AddressBook load() throws StorageOperationException, FileNotFoundException {
         try (final Reader fileReader =
                      new BufferedReader(new FileReader(path.toFile()))) {
 
@@ -136,11 +136,9 @@ public class StorageFile {
          * situation (i.e. not truly exceptional) we should not use an exception to handle it.
          */
 
-        // create empty file if not found
+        
         } catch (FileNotFoundException fnfe) {
-            final AddressBook empty = new AddressBook();
-            save(empty);
-            return empty;
+        	throw new FileNotFoundException("File not found");
 
         // other errors
         } catch (IOException ioe) {
