@@ -3,7 +3,7 @@ package seedu.addressbook.data.person;
 import seedu.addressbook.data.exception.IllegalValueException;
 
 /**
- * Represents a Person's contact in the address book. Which also has subclasses Address, Email, and Name. 
+ * Represents a Person's contact in the address book. Which also has subclasses Address, Email, and Phone. 
  */
 
 public class Contact {
